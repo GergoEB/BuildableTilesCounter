@@ -1,7 +1,7 @@
 {
-  "name": "ExamplePlugin",
-  "author": "Anuke",
-  "main": "example.ExamplePlugin",
+  "name": "Map Tiles Counter",
+  "author": "Semetrix",
+  "main": "xyz.semetrix.scanmap.ScanMap",
   "description": "A plugin to demonstrate some basic features.",
   "version": 1.0
 }
