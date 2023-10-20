@@ -1,41 +1,32 @@
 package xyz.semetrix.scanmap;
 
+import arc.Core;
+import arc.files.Fi;
 import arc.util.CommandHandler;
 import arc.util.Log;
+import mindustry.Vars;
 import mindustry.content.Blocks;
 import mindustry.content.Liquids;
 import mindustry.gen.Player;
-import mindustry.mod.Plugin;
+import mindustry.io.SaveIO;
 import mindustry.world.Block;
 import mindustry.world.Tile;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static arc.util.Strings.stripColors;
 import static mindustry.Vars.state;
 import static mindustry.Vars.world;
 import static mindustry.world.Build.contactsShallows;
 
 @SuppressWarnings("unused")
-public class ScanMap extends Plugin{
-
-    //called when game initializes
-    @Override
-    public void init(){
-    }
-
-    //register commands that run on the server
-    @Override
-    public void registerServerCommands(CommandHandler handler){
-        handler.register("counttiles", "List all buildable tiles", args ->
-                Log.info(scanMap()));
-    }
-
-    //register commands that player can invoke in-game
-    @Override
-    public void registerClientCommands(CommandHandler handler){
-        handler.register("counttiles", "List all buildable tiles", (String[] args, Player player) ->
-                player.sendMessage(scanMap()));
+public class ScanMap {
+    public static void main(String[] args) {
+        Core.settings.setDataDirectory(Core.files.local("config"));
+        Vars.init();
+        SaveIO.load(new Fi("map.msav"));
+        System.out.println(stripColors(new ScanMap().scanMap()));
     }
 
     public String scanMap() {
